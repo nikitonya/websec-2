@@ -1,0 +1,308 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #eaeaea;
+}
+
+.container {
+    margin: auto;
+    width: 1200px;
+    background-color: #eaeaea;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom right, #f1f1f1, #ffc18d);
+}
+
+.nav {
+    background-color: #4f3a3a;
+    color: #eaeaea;
+    padding: 15px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.logo_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand_name {
+    margin-left: 10px;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.nav_bar {
+    font-family: "Varela Round", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.nav_link {
+    margin: 0 15px;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 120%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 70px;
+    color: #eaeaea;
+}
+
+.btn {
+    font-family: "Varela Round", sans-serif;
+    padding: 11px 30px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    /* background-color: #fd8547; */
+    color: #ffff;
+    background-image: linear-gradient(to bottom right, #e0713b, #a62f0a);
+}
+
+.brands_section {
+    background-color: #f1f1f1;
+    padding: 20px 0 20px 0;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+    padding-top: 20px;
+    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    color: #353535;
+}
+
+.brands_wrapper {
+    margin: 0 70px;
+    display: grid;
+    align-items: center;
+    text-align: left;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 200px;
+}
+
+.brand_logo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.brand_logo:hover {
+    transition: all 0.8s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.sneakers_section {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #f1f1f1;
+    min-height: 100vh;
+}
+
+.sneaker_grid {
+    margin: 15px 15px;
+    padding: 15px 0;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 330px;
+    column-gap: 1%;
+    row-gap: 5%;
+}
+
+.sneakers {
+    background-color: #dedede;;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.sneakers:hover {
+    transition: all 0.8s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.sneaker_image {
+    border-radius: inherit;
+    width: 100%;
+    height: 220px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.sneaker_image > img {
+    object-fit: contain;
+}
+.sneaker_details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 25px;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.sneaker_details > p {
+    font-family: "Varela Round", sans-serif;
+    margin: 0;
+}
+
+.sneaker_name,
+.sneaker_price {
+    font-weight: 600;
+    font-size: 18px;
+}
+.sneaker_name {
+    text-align: left;
+}
+.sneaker_price {
+    text-align: center;
+}
+
+.sneaker_brand {
+    font-size: 12px;
+    text-align: left;
+    color: #a2b5bb;
+}
+
+hr {
+    margin: 0 70px;
+    border: 1px solid #8d8d8d;
+    color: #8d8d8d;
+}
+
+ul {
+    padding: 5px 0;
+    margin: 0;
+    list-style: none;
+    font-family: "Varela Round", sans-serif;
+}
+
+li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: #8d8d8d;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 100px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form_radio_group {
+    display: inline-block;
+    overflow: hidden;
+}
+.form_radio_group-item {
+    display: inline-block;
+    float: left;
+}
+.form_radio_group input[type=radio] {
+    display: none;
+}
+.form_radio_group label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px 15px;
+    line-height: 34px;
+    border: 1px solid #999;
+    border-right: none;
+    user-select: none;
+}
+
+.form_radio_group .form_radio_group-item:first-child label {
+    border-radius: 6px 0 0 6px;
+}
+.form_radio_group .form_radio_group-item:last-child label {
+    border-radius: 0 6px 6px 0;
+    border-right: 1px solid #999;
+}
+
+.form_radio_group input[type=radio]:checked + label {
+    background: #ffe0a6;
+}
+
+.form_radio_group label:hover {
+    color: #666;
+}
+
+.sneaker_modal{
+    display: flex;
+}
+
+.sneaker_modal_details{
+    margin: 10px;
+}
+
+.modal_button {
+    background-color: #dedede;;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+
+.modal_button:hover {
+    transition: all 0.8s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.sneaker_row{
+    display: flex;
+    justify-content: space-between
+}
+
+.modal-cart-container{
+    text-align: center;
+}
+
+.input_modal{
+    margin: 10px;
+}

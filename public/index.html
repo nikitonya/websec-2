@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sneakers Shop</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="nav">
+                <div class="logo_wrapper">
+                    <img src="images/logo.png" width="50px" height="50px" alt="Brand Logo"/>
+                    <div class="brand_name">NIKITONYA</div>
+                </div>
+                <div class="nav_bar">
+                    <div class="nav_link">
+                        <img src="images/shopping_cart_logo.png" width="25px" height="25px" alt="Cart Icon" onclick="openShoppingCart()"/>
+                    </div>
+                </div>
+            </div>
+            <section class="brands_section">
+                <h2>SOME OF OUR TRUSTED BRANDS</h2>
+                <div class="brands_wrapper">
+                    <img class="brand_logo" src="images/nike_logo.png" alt="" onclick="generateNikeSneakers()"/>
+                    <img class="brand_logo" src="images/adidas_logo.svg" alt="" onclick="generateAdidasSneakers()"/>
+                    <img class="brand_logo" src="images/fila_logo.svg" alt="" onclick="generateFilaSneakers()"/>
+                    <img class="brand_logo" src="images/zara_logo.svg" alt="" onclick="generateZaraSneakers()"/>
+                    <img class="brand_logo" src="images/chanel_logo.svg" alt="" onclick="generateChanelSneakers()"/>
+                    <img class="brand_logo" src="images/h&m_logo.svg" alt="" onclick="generateHMSneakers()"/>
+                </div>
+            </section>
+            <section class="sneakers_section">
+            </section>
+        </div>
+        <div id="modalInfo" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-info-container"></div>
+            </div>
+        </div>
+        <div id="modalShoppingCart" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-cart-container">
+                    <h2>Корзина</h2>
+                    <div class="selected-sneakers"></div>
+                    <div class="input_modal">
+                        <label for="user_name">Ваше Имя </label><input id="user_name"/>
+                    </div>
+                    <div class="input_modal">
+                        <label for="phone">Ваш телефон </label><input type="tel" id="phone">
+                    </div>
+                    <h4 id="error_field" style="color: #a62f0a"> </h4>
+                    <button class="modal_button" onclick="buySneakers()">Оставить заявку</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../static/script.js"></script>
+</html>
