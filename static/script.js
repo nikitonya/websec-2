@@ -8,7 +8,7 @@ let shoppingList = []
 window.onload = function(){
     if (localStorage.getItem('shoppingList'))
         shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
-    generateNikeSneakers()
+    generateSneakers('nike')
 }
 
 span.onclick = function() {
@@ -28,58 +28,8 @@ window.onclick = function(event) {
     }
 }
 
-function generateNikeSneakers(){
-    fetch('/nikes', {
-        method: 'GET'
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        regenerateGrid(data);
-    });
-}
-
-function generateAdidasSneakers(){
-    fetch('/adidas', {
-        method: 'GET'
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        regenerateGrid(data);
-    });
-}
-
-function generateFilaSneakers(){
-    fetch('/fila', {
-        method: 'GET'
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        regenerateGrid(data);
-    });
-}
-
-function generateZaraSneakers(){
-    fetch('/zara', {
-        method: 'GET'
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        regenerateGrid(data);
-    });
-}
-
-function generateChanelSneakers(){
-    fetch('/chanel', {
-        method: 'GET'
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        regenerateGrid(data);
-    });
-}
-
-function generateHMSneakers(){
-    fetch('/hm', {
+function generateSneakers(type){
+    fetch('/sneakers/' + type, {
         method: 'GET'
     }).then(res => {
         return res.json();
@@ -92,26 +42,37 @@ function regenerateGrid(sneakers){
     section.innerHTML = '';
     const newItem = document.createElement('div');
     newItem.className="sneaker_grid"
-    sneakers.map((sneaker, count) =>(
-        newItem.innerHTML += `
-    		 <div class="sneakers" id=${"sneaker_"+count}>
-                        <div class="sneaker_image">
-                            <img
-                                    src=${"photo/" + sneaker.image}
-                                    width="250"
-                                    height="220"
-                                    alt=${"Sneaker Image" + count}
-                                    style="background-color: #f1f1f1;"
-                            />
-                        </div>
-                        <div class="sneaker_details">
-                            <p class="sneaker_name">${sneaker.brand}</p>
-                            <p class="sneaker_price">${sneaker.price}</p>
-                            <p class="sneaker_brand">${sneaker.model}</p>
-                        </div>
-                    </div>
-    		`
-    ))
+    sneakers.map((sneaker, count) =>{
+        const sneaker_panel = document.createElement('div')
+        sneaker_panel.className = "sneakers"
+        sneaker_panel.id = "sneaker_"+count
+        const sneaker_img = document.createElement('div')
+        sneaker_img.className = "sneaker_image"
+        const  img = document.createElement('img')
+        img.src = "photo/" + sneaker.image
+        img.width = 250
+        img.height = 220
+        img.alt = "Sneaker Image" + count
+        img.style.cssText = "background-color: #f1f1f1;"
+        sneaker_img.append(img)
+        sneaker_panel.append(sneaker_img)
+        const sneaker_details = document.createElement('div')
+        sneaker_details.className = "sneaker_details"
+        const sneaker_name = document.createElement('p')
+        sneaker_name.className = "sneaker_name"
+        sneaker_name.textContent = sneaker.brand
+        const sneaker_price = document.createElement('p')
+        sneaker_price.className = "sneaker_price"
+        sneaker_price.textContent = sneaker.price
+        const sneaker_model = document.createElement('p')
+        sneaker_model.className = "sneaker_brand"
+        sneaker_model.textContent = sneaker.model
+        sneaker_details.append(sneaker_name)
+        sneaker_details.append(sneaker_price)
+        sneaker_details.append(sneaker_model)
+        sneaker_panel.append(sneaker_details)
+        newItem.append(sneaker_panel)
+    })
     section.appendChild(newItem);
     sneakers.map((sneaker, count) =>(
         document.getElementById("sneaker_"+count).addEventListener('click', (event) => {
@@ -122,23 +83,38 @@ function regenerateGrid(sneakers){
 
 function openSneakerInfo(sneaker){
     modal.style.display = "block";
-    document.querySelector(".modal-info-container").innerHTML = `
-      		 <div class="sneaker_modal">
-                        <div class="sneaker_modal_image">
-                            <img
-                                    src=${"photo/" + sneaker.image}
-                                    height="400"
-                                    alt="Sneaker Image 1"
-                            />
-                        </div>
-                        <div class="sneaker_modal_details">
-                            <h2 class="sneaker_modal_brand">${sneaker.model}</h2>
-                            <h3 class="sneaker_modal_price">Цена: ${sneaker.price}</h3>
-                            <p class="sneaker_modal_description">${sneaker.description}</p>
-                            <button class="modal_button">Добавить в корзину</button>
-                        </div>
-                    </div>
-    `
+    let modal_info_container = document.querySelector(".modal-info-container")
+    modal_info_container.innerHTML = ``
+    const sneaker_modal = document.createElement('div')
+    sneaker_modal.className = "sneaker_modal"
+    const sneaker_modal_img = document.createElement('div')
+    sneaker_modal_img.className = "sneaker_modal_image"
+    const img = document.createElement('img')
+    img.src = "photo/" + sneaker.image
+    img.height = 400
+    img.alt = "Sneaker Image 1"
+    sneaker_modal_img.append(img)
+    sneaker_modal.append(sneaker_modal_img)
+    const sneaker_modal_details = document.createElement('div')
+    sneaker_modal_details.className = "sneaker_modal_details"
+    const sneaker_modal_brand = document.createElement('h2')
+    sneaker_modal_brand.className = "sneaker_modal_brand"
+    sneaker_modal_brand.textContent = sneaker.model
+    const sneaker_modal_price = document.createElement('h3')
+    sneaker_modal_price.className = "sneaker_modal_price"
+    sneaker_modal_price.textContent = "Цена:" + sneaker.price
+    const sneaker_modal_description = document.createElement('p')
+    sneaker_modal_description.className = "sneaker_modal_description"
+    sneaker_modal_description.textContent = sneaker.description
+    const modal_button = document.createElement('button')
+    modal_button.className = "modal_button"
+    modal_button.textContent ="Добавить в корзину"
+    sneaker_modal_details.append(sneaker_modal_brand)
+    sneaker_modal_details.append(sneaker_modal_price)
+    sneaker_modal_details.append(sneaker_modal_description)
+    sneaker_modal_details.append(modal_button)
+    sneaker_modal.append(sneaker_modal_details)
+    modal_info_container.append(sneaker_modal)
     document.querySelector(".sneaker_modal_description").after(generateSizeButton(sneaker.size))
     document.querySelector(".modal_button").addEventListener('click', (event) => {
         modal.style.display = "none";
@@ -165,14 +141,14 @@ function getSelectSize(){
 function generateSizeButton(size){
     const newItem = document.createElement('div');
     newItem.className = "form_radio_group";
-    size.map((one_size, count) =>(
+    size.map((one_size, count) => {
         newItem.innerHTML += `
     		 <div class="form_radio_group-item">
-                <input id=${"radio-"+count} type="radio" name="radio" value=${one_size} checked>
-                <label for=${"radio-"+count}>${one_size}</label>
+                <input id=${"radio-" + count} type="radio" name="radio" value=${one_size} checked>
+                <label for=${"radio-" + count}>${one_size}</label>
              </div>
     		`
-    ))
+    })
     return newItem;
 }
 
@@ -183,16 +159,25 @@ function openShoppingCart(){
     let newItem = document.createElement('div');
     newItem.className="selected-sneakers_rows"
     let sum = 0;
-    shoppingList.map((sneaker_row, count) =>(
-        sum+=sneaker_row.price,
-        newItem.innerHTML += `
-    		 <div class="sneaker_row" id=${"sneaker_row_"+count}>
-                            <p class="sneaker_row_model">Модель: ${sneaker_row.model}</p>
-                            <p class="sneaker_row_size">Размер: ${sneaker_row.size}</p>
-                            <p class="sneaker_row_price">Цена: ${sneaker_row.price}</p>
-                    </div>
-    		`
-    ))
+    shoppingList.map((sneaker_row_data, count) => {
+        sum += sneaker_row_data.price
+        const sneaker_row = document.createElement('div')
+        sneaker_row.className = "sneaker_row"
+        sneaker_row.id = "sneaker_row_" + count
+        const sneaker_row_model = document.createElement('p')
+        sneaker_row_model.className = "sneaker_row_model"
+        sneaker_row_model.textContent = sneaker_row_data.model
+        const sneaker_row_size = document.createElement('p')
+        sneaker_row_size.className = "sneaker_row_size"
+        sneaker_row_size.textContent = sneaker_row_data.size
+        const sneaker_row_price = document.createElement('p')
+        sneaker_row_price.className = "sneaker_row_price"
+        sneaker_row_price.textContent = sneaker_row_data.price
+        sneaker_row.append(sneaker_row_model)
+        sneaker_row.append(sneaker_row_size)
+        sneaker_row.append(sneaker_row_price)
+        newItem.append(sneaker_row)
+    })
     newItem.innerHTML += `
     		 <h2>Итоговая цена: ${sum}</h2>
     		`

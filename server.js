@@ -41,27 +41,27 @@ app.post('/new_order', urlencodedParser, function (
     response.sendStatus(200)
 })
 
-app.get('/nikes', function (request, response) {
+app.get('/sneakers/nike', function (request, response) {
     response.send(require('./source/sneakers.json').nike)
 })
 
-app.get('/adidas', function (request, response) {
+app.get('/sneakers/adidas', function (request, response) {
     response.send(require('./source/sneakers.json').adidas)
 })
 
-app.get('/fila', function (request, response) {
+app.get('/sneakers/fila', function (request, response) {
     response.send(require('./source/sneakers.json').fila)
 })
 
-app.get('/zara', function (request, response) {
+app.get('/sneakers/zara', function (request, response) {
     response.send(require('./source/sneakers.json').zara)
 })
 
-app.get('/chanel', function (request, response) {
+app.get('/sneakers/chanel', function (request, response) {
     response.send(require('./source/sneakers.json').chanel)
 })
 
-app.get('/hm', function (request, response) {
+app.get('/sneakers/hm', function (request, response) {
     response.send(require('./source/sneakers.json').hm)
 })
 
@@ -70,8 +70,3 @@ app.get('/photo/:path', function (request, response) {
         response.sendFile(__dirname+ '/source/image/'+ request.params.path);
     }
 })
-
-bot.onText(/\/echo/, (msg) => {
-    const chatId = msg.chat.id
-    bot.sendMessage(chatId, chatId)
-  })
